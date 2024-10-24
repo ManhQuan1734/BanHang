@@ -83,8 +83,6 @@ for (let i = 0; i < orderItems.length; i++) {
     // Thực hiện hành động khi đơn hàng được click
     console.log(`Đơn hàng ${i + 1} đã được click`);
 
-    // Bạn có thể thêm các chức năng khác tại đây, ví dụ mở chi tiết đơn hàng
-    // orderItems[i].classList.add('selected'); // ví dụ: đánh dấu đơn hàng đã chọn
   });
 
 }
