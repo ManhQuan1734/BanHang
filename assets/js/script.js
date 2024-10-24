@@ -86,3 +86,47 @@ for (let i = 0; i < orderItems.length; i++) {
   });
 
 }
+
+// Giỏ hàng
+let cart = [];
+
+// Thêm sản phẩm vào giỏ hàng
+const addToCartButtons = document.querySelectorAll('[data-add-to-cart]');
+addToCartButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const productName = this.getAttribute('data-product-name');
+    const productPrice = parseFloat(this.getAttribute('data-product-price'));
+    
+    cart.push({ name: productName, price: productPrice });
+    updateCart();
+  });
+});
+
+// Cập nhật giỏ hàng
+function updateCart() {
+  const cartItemsContainer = document.querySelector('[data-cart-items]');
+  cartItemsContainer.innerHTML = '';
+  
+  cart.forEach((item, index) => {
+    const li = document.createElement('li');
+    li.textContent = `${item.name} - ${item.price.toFixed(2)}đ`;
+    
+    const removeButton = document.createElement('button');
+    removeButton.textContent = 'Xóa';
+    removeButton.addEventListener('click', function() {
+      cart.splice(index, 1);
+      updateCart();
+    });
+    
+    li.appendChild(removeButton);
+    cartItemsContainer.appendChild(li);
+  });
+}
+
+// Hủy giỏ hàng
+const clearCartButton = document.querySelector('[data-clear-cart]');
+clearCartButton.addEventListener('click', function() {
+  cart = [];
+  updateCart();
+});
+
